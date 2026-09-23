@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NONGNAPAT | Web Design Showcase</title>
+    
+    <!-- Using a sleek, geometric font for high clarity -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        neon: {
+                            pink: '#FF007F',
+                            cyan: '#00FFFF',
+                            yellow: '#FFEA00',
+                            lime: '#39FF14',
+                            orange: '#FF6600',
+                            purple: '#B026FF',
+                            bg: '#050505',
+                            grid: '#1a1a1a'
+                        }
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #050505;
+            color: #ffffff;
+            /* Cyber grid background */
+            background-image: 
+                linear-gradient(to right, #1a1a1a 1px, transparent 1px),
+                linear-gradient(to bottom, #1a1a1a 1px, transparent 1px);
+            background-size: 40px 40px;
+            /* Prevent scrolling on desktop, allow on mobile */
+            overflow-x: hidden;
+        }
+
+        @media (min-width: 1024px) {
+            body { overflow: hidden; }
+        }
+
+        /* Intro Screen Transitions */
+        #intro-screen {
+            transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.7, 0, 0.3, 1);
+        }
+        .intro-hidden {
+            opacity: 0;
+            transform: scale(1.1);
+            pointer-events: none;
+        }
+
+        /* Neon Card Styling */
+        .neon-card {
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(10px);
+            border: 2px solid;
+            transition: all 0.3s ease;
+        }
+
+        .neon-card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Specific Color Glows */
+        .glow-pink { border-color: #FF007F; box-shadow: 0 0 15px rgba(255,0,127,0.3); }
+        .glow-pink:hover { box-shadow: 0 0 25px rgba(255,0,127,0.6), inset 0 0 15px rgba(255,0,127,0.2); }
+        .btn-pink { background: #FF007F; box-shadow: 0 0 10px #FF007F; }
+        .btn-pink:hover { background: #fff; color: #FF007F; box-shadow: 0 0 20px #FF007F; }
+
+        .glow-cyan { border-color: #00FFFF; box-shadow: 0 0 15px rgba(0,255,255,0.3); }
+        .glow-cyan:hover { box-shadow: 0 0 25px rgba(0,255,255,0.6), inset 0 0 15px rgba(0,255,255,0.2); }
+        .btn-cyan { background: #00FFFF; color: #000; box-shadow: 0 0 10px #00FFFF; }
+        .btn-cyan:hover { background: #fff; color: #00FFFF; box-shadow: 0 0 20px #00FFFF; }
+
+        .glow-yellow { border-color: #FFEA00; box-shadow: 0 0 15px rgba(255,234,0,0.3); }
+        .glow-yellow:hover { box-shadow: 0 0 25px rgba(255,234,0,0.6), inset 0 0 15px rgba(255,234,0,0.2); }
+        .btn-yellow { background: #FFEA00; color: #000; box-shadow: 0 0 10px #FFEA00; }
+        .btn-yellow:hover { background: #fff; color: #FFEA00; box-shadow: 0 0 20px #FFEA00; }
+
+        .glow-lime { border-color: #39FF14; box-shadow: 0 0 15px rgba(57,255,20,0.3); }
+        .glow-lime:hover { box-shadow: 0 0 25px rgba(57,255,20,0.6), inset 0 0 15px rgba(57,255,20,0.2); }
+        .btn-lime { background: #39FF14; color: #000; box-shadow: 0 0 10px #39FF14; }
+        .btn-lime:hover { background: #fff; color: #39FF14; box-shadow: 0 0 20px #39FF14; }
+
+        .glow-orange { border-color: #FF6600; box-shadow: 0 0 15px rgba(255,102,0,0.3); }
+        .glow-orange:hover { box-shadow: 0 0 25px rgba(255,102,0,0.6), inset 0 0 15px rgba(255,102,0,0.2); }
+        .btn-orange { background: #FF6600; color: #fff; box-shadow: 0 0 10px #FF6600; }
+        .btn-orange:hover { background: #fff; color: #FF6600; box-shadow: 0 0 20px #FF6600; }
+
+        .glow-purple { border-color: #B026FF; box-shadow: 0 0 15px rgba(176,38,255,0.3); }
+        .glow-purple:hover { box-shadow: 0 0 25px rgba(176,38,255,0.6), inset 0 0 15px rgba(176,38,255,0.2); }
+        .btn-purple { background: #B026FF; color: #fff; box-shadow: 0 0 10px #B026FF; }
+        .btn-purple:hover { background: #fff; color: #B026FF; box-shadow: 0 0 20px #B026FF; }
+
+        /* Utility to force grid to fit height */
+        .grid-fit-height {
+            height: calc(100vh - 160px); 
+        }
+        
+        /* Subtle scanline overlay */
+        .scanlines {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.2));
+            background-size: 100% 4px;
+            pointer-events: none;
+            z-index: 40;
+        }
+    </style>
+</head>
+<body class="h-screen w-screen flex flex-col font-sans selection:bg-white selection:text-black">
+
+    <div class="scanlines"></div>
+
+    <!-- Intro Screen -->
+    <div id="intro-screen" class="fixed inset-0 z-50 bg-black flex flex-col items-center justify-center cursor-pointer w-full h-full">
+        <div class="relative z-10 text-center flex flex-col items-center">
+            <!-- Neon Glitch Text Effect handled by simple shadows for clarity -->
+            <h1 class="text-6xl md:text-8xl lg:text-[10rem] font-black tracking-tighter text-white mb-6 uppercase" 
+                style="text-shadow: 0 0 20px rgba(255,255,255,0.8), 0 0 40px #00FFFF, -3px 0px 0px #FF007F, 3px 0px 0px #00FFFF;">
+                NONGNAPAT
+            </h1>
+            <div class="group flex items-center gap-3 px-8 py-4 bg-transparent border border-white/30 rounded-full hover:border-white hover:shadow-[0_0_20px_rgba(255,255,255,0.5)] transition-all duration-300">
+                <span class="w-3 h-3 bg-neon-lime rounded-full animate-pulse shadow-[0_0_10px_#39FF14]"></span>
+                <p class="text-white text-sm md:text-base font-medium tracking-[0.3em] uppercase group-hover:text-neon-cyan transition-colors">
+                    [ Click to Enter Showcase ]
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <main class="relative z-10 flex flex-col h-full w-full">
+        
+        <!-- Header -->
+        <header class="pt-6 pb-2 flex flex-col items-center justify-center shrink-0 w-full z-20">
+            <h2 class="text-3xl md:text-4xl lg:text-5xl font-black uppercase tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-neon-pink via-neon-cyan to-neon-purple mb-1">
+                Web Design Showcase
+            </h2>
+            <div class="h-[1px] w-64 bg-gradient-to-r from-transparent via-white to-transparent opacity-50"></div>
+        </header>
+
+        <!-- Portfolio Grid (Strict 3x2 on desktop, fitting the screen) -->
+        <section class="flex-grow flex items-center justify-center px-4 md:px-8 py-4 w-full overflow-y-auto lg:overflow-hidden z-10">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6 w-full max-w-[1400px] grid-fit-height min-h-[500px]">
+                
+                <!-- Project 1: Komorebi Books (Pink) -->
+                <div class="neon-card glow-pink p-4 flex flex-col group rounded-xl h-full">
+                    <div class="relative w-full h-24 lg:h-32 mb-4 shrink-0 overflow-hidden rounded-lg bg-gray-900 border border-white/10">
+                        <img src="https://placehold.co/600x300/111111/FF007F?text=Komorebi+Books&font=Outfit" alt="Komorebi Books" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-80 group-hover:opacity-100">
+                    </div>
+                    <h3 class="text-lg lg:text-xl font-bold text-white uppercase tracking-wider mb-2">Komorebi Books</h3>
+                    <p class="text-xs lg:text-sm text-gray-400 font-light leading-relaxed mb-4 flex-grow">Personal Website serving as a digital library and unique showcase platform.</p>
+                    <a href="https://sites.google.com/northbkk.ac.th/komorebibooks/home?usp=sharing" target="_blank" rel="noopener noreferrer" class="btn-pink text-center py-2 text-sm font-bold uppercase rounded-md transition-all duration-300">
+                        Explore Site <span class="inline-block ml-1">↗</span>
+                    </a>
+                </div>
+
+                <!-- Project 2: Pawbie (Cyan) -->
+                <div class="neon-card glow-cyan p-4 flex flex-col group rounded-xl h-full">
+                    <div class="relative w-full h-24 lg:h-32 mb-4 shrink-0 overflow-hidden rounded-lg bg-gray-900 border border-white/10">
+                        <img src="https://placehold.co/600x300/111111/00FFFF?text=Pawbie&font=Outfit" alt="Pawbie" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-80 group-hover:opacity-100">
+                    </div>
+                    <h3 class="text-lg lg:text-xl font-bold text-white uppercase tracking-wider mb-2">Pawbie</h3>
+                    <p class="text-xs lg:text-sm text-gray-400 font-light leading-relaxed mb-4 flex-grow">An interactive encyclopedia for beginner dog and cat lovers.</p>
+                    <a href="https://sites.google.com/northbkk.ac.th/pawbie/house" target="_blank" rel="noopener noreferrer" class="btn-cyan text-center py-2 text-sm font-bold uppercase rounded-md transition-all duration-300">
+                        Explore Site <span class="inline-block ml-1">↗</span>
+                    </a>
+                </div>
+
+                <!-- Project 3: BMI Calculator (Yellow) -->
+                <div class="neon-card glow-yellow p-4 flex flex-col group rounded-xl h-full">
+                    <div class="relative w-full h-24 lg:h-32 mb-4 shrink-0 overflow-hidden rounded-lg bg-gray-900 border border-white/10">
+                        <img src="https://placehold.co/600x300/111111/FFEA00?text=BMI+Calculator&font=Outfit" alt="BMI Calculator" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-80 group-hover:opacity-100">
+                    </div>
+                    <h3 class="text-lg lg:text-xl font-bold text-white uppercase tracking-wider mb-2">BMI Calculator</h3>
+                    <p class="text-xs lg:text-sm text-gray-400 font-light leading-relaxed mb-4 flex-grow">A clean, functional web application for calculating Body Mass Index.</p>
+                    <a href="https://nbu68.github.io/BMI/" target="_blank" rel="noopener noreferrer" class="btn-yellow text-center py-2 text-sm font-bold uppercase rounded-md transition-all duration-300">
+                        Explore Site <span class="inline-block ml-1">↗</span>
+                    </a>
+                </div>
+
+                <!-- Project 4: Open House (Lime) -->
+                <div class="neon-card glow-lime p-4 flex flex-col group rounded-xl h-full">
+                    <div class="relative w-full h-24 lg:h-32 mb-4 shrink-0 overflow-hidden rounded-lg bg-gray-900 border border-white/10">
+                        <img src="https://placehold.co/600x300/111111/39FF14?text=Open+House&font=Outfit" alt="Open House" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-80 group-hover:opacity-100">
+                    </div>
+                    <h3 class="text-lg lg:text-xl font-bold text-white uppercase tracking-wider mb-2">Open House</h3>
+                    <p class="text-xs lg:text-sm text-gray-400 font-light leading-relaxed mb-4 flex-grow">Dynamic registration landing page designed for school open house events.</p>
+                    <a href="https://nbu68.github.io/-Open-House/" target="_blank" rel="noopener noreferrer" class="btn-lime text-center py-2 text-sm font-bold uppercase rounded-md transition-all duration-300">
+                        Explore Site <span class="inline-block ml-1">↗</span>
+                    </a>
+                </div>
+
+                <!-- Project 5: WOKIFY (Orange) -->
+                <div class="neon-card glow-orange p-4 flex flex-col group rounded-xl h-full">
+                    <div class="relative w-full h-24 lg:h-32 mb-4 shrink-0 overflow-hidden rounded-lg bg-gray-900 border border-white/10">
+                        <img src="https://placehold.co/600x300/111111/FF6600?text=WOKIFY&font=Outfit" alt="WOKIFY" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-80 group-hover:opacity-100">
+                    </div>
+                    <h3 class="text-lg lg:text-xl font-bold text-white uppercase tracking-wider mb-2">WOKIFY</h3>
+                    <p class="text-xs lg:text-sm text-gray-400 font-light leading-relaxed mb-4 flex-grow">An interactive web application showcasing creative web development.</p>
+                    <a href="https://nbu68.github.io/WokCraft/" target="_blank" rel="noopener noreferrer" class="btn-orange text-center py-2 text-sm font-bold uppercase rounded-md transition-all duration-300">
+                        Explore Site <span class="inline-block ml-1">↗</span>
+                    </a>
+                </div>
+
+                <!-- Project 6: Animate (Purple) -->
+                <div class="neon-card glow-purple p-4 flex flex-col group rounded-xl h-full">
+                    <div class="relative w-full h-24 lg:h-32 mb-4 shrink-0 overflow-hidden rounded-lg bg-gray-900 border border-white/10">
+                        <img src="https://placehold.co/600x300/111111/B026FF?text=Animate&font=Outfit" alt="Animate" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-80 group-hover:opacity-100">
+                    </div>
+                    <h3 class="text-lg lg:text-xl font-bold text-white uppercase tracking-wider mb-2">Animate</h3>
+                    <p class="text-xs lg:text-sm text-gray-400 font-light leading-relaxed mb-4 flex-grow">A portfolio section dedicated to advanced CSS and JavaScript animations.</p>
+                    <a href="https://nbu68.github.io/animated/" target="_blank" rel="noopener noreferrer" class="btn-purple text-center py-2 text-sm font-bold uppercase rounded-md transition-all duration-300">
+                        Explore Site <span class="inline-block ml-1">↗</span>
+                    </a>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="py-3 px-6 shrink-0 mt-auto bg-transparent z-10">
+            <div class="max-w-7xl mx-auto text-center flex justify-center">
+                <p class="text-xs text-gray-500 tracking-[0.2em] font-light uppercase">
+                    &copy; 2026 WEB DESIGN SHOWCASE
+                </p>
+            </div>
+        </footer>
+    </main>
+
+    <script>
+        // Intro screen logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const introScreen = document.getElementById('intro-screen');
+
+            introScreen.addEventListener('click', () => {
+                // Fade out and scale up smoothly
+                introScreen.classList.add('intro-hidden');
+                
+                // Completely remove from DOM after transition completes
+                setTimeout(() => {
+                    introScreen.remove();
+                }, 800); 
+            });
+        });
+    </script>
+</body>
+</html>
