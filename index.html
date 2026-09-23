@@ -108,11 +108,6 @@
         .btn-purple { background: #B026FF; color: #fff; box-shadow: 0 0 10px #B026FF; }
         .btn-purple:hover { background: #fff; color: #B026FF; box-shadow: 0 0 20px #B026FF; }
 
-        /* Utility to force grid to fit height */
-        .grid-fit-height {
-            height: calc(100vh - 160px); 
-        }
-        
         /* Subtle scanline overlay */
         .scanlines {
             position: fixed;
@@ -155,9 +150,9 @@
             <div class="h-[1px] w-64 bg-gradient-to-r from-transparent via-white to-transparent opacity-50"></div>
         </header>
 
-        <!-- Portfolio Grid (Strict 3x2 on desktop, fitting the screen) -->
-        <section class="flex-grow flex items-center justify-center px-4 md:px-8 py-4 w-full overflow-y-auto lg:overflow-hidden z-10">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6 w-full max-w-[1400px] grid-fit-height min-h-[500px]">
+        <!-- Portfolio Grid (Allow scrolling to prevent cutoff) -->
+        <section class="flex-grow flex items-center justify-center px-4 md:px-8 py-8 w-full overflow-y-auto z-10">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 w-full max-w-[1400px]">
                 
                 <!-- Project 1: Komorebi Books (Pink) -->
                 <div class="neon-card glow-pink p-4 flex flex-col group rounded-xl h-full">
