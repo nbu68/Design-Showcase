@@ -52,7 +52,7 @@
         }
 
         @media (min-width: 1024px) {
-            body { overflow: hidden; }
+            /* Removed body { overflow: hidden; } to allow natural scrolling */
         }
 
         /* Intro Screen Transitions */
@@ -140,7 +140,8 @@
         </div>
     </div>
     
-    <main class="relative z-10 flex flex-col h-full w-full">
+    <!-- Changed h-full to min-h-screen to allow content to dictate height -->
+    <main class="relative z-10 flex flex-col min-h-screen w-full">
         
         <!-- Header -->
         <header class="pt-6 pb-2 flex flex-col items-center justify-center shrink-0 w-full z-20">
@@ -150,14 +151,15 @@
             <div class="h-[1px] w-64 bg-gradient-to-r from-transparent via-white to-transparent opacity-50"></div>
         </header>
 
-        <!-- Portfolio Grid (Allow scrolling to prevent cutoff) -->
-        <section class="flex-grow flex items-center justify-center px-4 md:px-8 py-8 w-full overflow-y-auto z-10">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 w-full max-w-[1400px]">
+        <!-- Portfolio Grid (Removed fixed height/overflow constraints) -->
+        <section class="flex-grow flex items-center justify-center px-4 md:px-8 py-8 w-full z-10">
+            <!-- Added pb-16 to ensure space before footer when scrolling -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 w-full max-w-[1400px] pb-8">
                 
                 <!-- Project 1: Komorebi Books (Pink) -->
-                <div class="neon-card glow-pink p-4 flex flex-col group rounded-xl h-full">
-                    <div class="relative w-full h-24 lg:h-32 mb-4 shrink-0 overflow-hidden rounded-lg bg-gray-900 border border-white/10">
-                        <img src="https://placehold.co/600x300/111111/FF007F?text=Komorebi+Books&font=Outfit" alt="Komorebi Books" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-80 group-hover:opacity-100">
+                <div class="neon-card glow-pink p-4 flex flex-col group rounded-xl">
+                    <div class="relative w-full h-40 lg:h-48 mb-4 shrink-0 overflow-hidden rounded-lg bg-gray-900 border border-white/10 flex items-center justify-center">
+                        <span class="text-2xl font-black text-neon-pink opacity-80 group-hover:scale-110 transition-transform duration-500">Komorebi Books</span>
                     </div>
                     <h3 class="text-lg lg:text-xl font-bold text-white uppercase tracking-wider mb-2">Komorebi Books</h3>
                     <p class="text-xs lg:text-sm text-gray-400 font-light leading-relaxed mb-4 flex-grow">Personal Website serving as a digital library and unique showcase platform.</p>
@@ -167,9 +169,9 @@
                 </div>
 
                 <!-- Project 2: Pawbie (Cyan) -->
-                <div class="neon-card glow-cyan p-4 flex flex-col group rounded-xl h-full">
-                    <div class="relative w-full h-24 lg:h-32 mb-4 shrink-0 overflow-hidden rounded-lg bg-gray-900 border border-white/10">
-                        <img src="https://placehold.co/600x300/111111/00FFFF?text=Pawbie&font=Outfit" alt="Pawbie" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-80 group-hover:opacity-100">
+                <div class="neon-card glow-cyan p-4 flex flex-col group rounded-xl">
+                    <div class="relative w-full h-40 lg:h-48 mb-4 shrink-0 overflow-hidden rounded-lg bg-gray-900 border border-white/10 flex items-center justify-center">
+                         <span class="text-2xl font-black text-neon-cyan opacity-80 group-hover:scale-110 transition-transform duration-500">Pawbie</span>
                     </div>
                     <h3 class="text-lg lg:text-xl font-bold text-white uppercase tracking-wider mb-2">Pawbie</h3>
                     <p class="text-xs lg:text-sm text-gray-400 font-light leading-relaxed mb-4 flex-grow">An interactive encyclopedia for beginner dog and cat lovers.</p>
@@ -179,9 +181,9 @@
                 </div>
 
                 <!-- Project 3: BMI Calculator (Yellow) -->
-                <div class="neon-card glow-yellow p-4 flex flex-col group rounded-xl h-full">
-                    <div class="relative w-full h-24 lg:h-32 mb-4 shrink-0 overflow-hidden rounded-lg bg-gray-900 border border-white/10">
-                        <img src="https://placehold.co/600x300/111111/FFEA00?text=BMI+Calculator&font=Outfit" alt="BMI Calculator" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-80 group-hover:opacity-100">
+                <div class="neon-card glow-yellow p-4 flex flex-col group rounded-xl">
+                    <div class="relative w-full h-40 lg:h-48 mb-4 shrink-0 overflow-hidden rounded-lg bg-gray-900 border border-white/10 flex items-center justify-center">
+                        <span class="text-2xl font-black text-neon-yellow opacity-80 group-hover:scale-110 transition-transform duration-500">BMI Calculator</span>
                     </div>
                     <h3 class="text-lg lg:text-xl font-bold text-white uppercase tracking-wider mb-2">BMI Calculator</h3>
                     <p class="text-xs lg:text-sm text-gray-400 font-light leading-relaxed mb-4 flex-grow">A clean, functional web application for calculating Body Mass Index.</p>
@@ -191,9 +193,9 @@
                 </div>
 
                 <!-- Project 4: Open House (Lime) -->
-                <div class="neon-card glow-lime p-4 flex flex-col group rounded-xl h-full">
-                    <div class="relative w-full h-24 lg:h-32 mb-4 shrink-0 overflow-hidden rounded-lg bg-gray-900 border border-white/10">
-                        <img src="https://placehold.co/600x300/111111/39FF14?text=Open+House&font=Outfit" alt="Open House" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-80 group-hover:opacity-100">
+                <div class="neon-card glow-lime p-4 flex flex-col group rounded-xl">
+                    <div class="relative w-full h-40 lg:h-48 mb-4 shrink-0 overflow-hidden rounded-lg bg-gray-900 border border-white/10 flex items-center justify-center">
+                        <span class="text-2xl font-black text-neon-lime opacity-80 group-hover:scale-110 transition-transform duration-500">Open House</span>
                     </div>
                     <h3 class="text-lg lg:text-xl font-bold text-white uppercase tracking-wider mb-2">Open House</h3>
                     <p class="text-xs lg:text-sm text-gray-400 font-light leading-relaxed mb-4 flex-grow">Dynamic registration landing page designed for school open house events.</p>
@@ -203,9 +205,9 @@
                 </div>
 
                 <!-- Project 5: WOKIFY (Orange) -->
-                <div class="neon-card glow-orange p-4 flex flex-col group rounded-xl h-full">
-                    <div class="relative w-full h-24 lg:h-32 mb-4 shrink-0 overflow-hidden rounded-lg bg-gray-900 border border-white/10">
-                        <img src="https://placehold.co/600x300/111111/FF6600?text=WOKIFY&font=Outfit" alt="WOKIFY" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-80 group-hover:opacity-100">
+                <div class="neon-card glow-orange p-4 flex flex-col group rounded-xl">
+                    <div class="relative w-full h-40 lg:h-48 mb-4 shrink-0 overflow-hidden rounded-lg bg-gray-900 border border-white/10 flex items-center justify-center">
+                         <span class="text-2xl font-black text-neon-orange opacity-80 group-hover:scale-110 transition-transform duration-500">WOKIFY</span>
                     </div>
                     <h3 class="text-lg lg:text-xl font-bold text-white uppercase tracking-wider mb-2">WOKIFY</h3>
                     <p class="text-xs lg:text-sm text-gray-400 font-light leading-relaxed mb-4 flex-grow">An interactive web application showcasing creative web development.</p>
@@ -215,9 +217,9 @@
                 </div>
 
                 <!-- Project 6: Animate (Purple) -->
-                <div class="neon-card glow-purple p-4 flex flex-col group rounded-xl h-full">
-                    <div class="relative w-full h-24 lg:h-32 mb-4 shrink-0 overflow-hidden rounded-lg bg-gray-900 border border-white/10">
-                        <img src="https://placehold.co/600x300/111111/B026FF?text=Animate&font=Outfit" alt="Animate" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-80 group-hover:opacity-100">
+                <div class="neon-card glow-purple p-4 flex flex-col group rounded-xl">
+                    <div class="relative w-full h-40 lg:h-48 mb-4 shrink-0 overflow-hidden rounded-lg bg-gray-900 border border-white/10 flex items-center justify-center">
+                         <span class="text-2xl font-black text-neon-purple opacity-80 group-hover:scale-110 transition-transform duration-500">Animate</span>
                     </div>
                     <h3 class="text-lg lg:text-xl font-bold text-white uppercase tracking-wider mb-2">Animate</h3>
                     <p class="text-xs lg:text-sm text-gray-400 font-light leading-relaxed mb-4 flex-grow">A portfolio section dedicated to advanced CSS and JavaScript animations.</p>
